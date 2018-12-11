@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<body style="max-width:400px; margin:auto;" align="center">
+
+<h1>Kartu Hasil Studi</h1>
+
+<table border="1" cellpadding="10" cellspacing="5">
+  <thead>
+    <tr bgcolor="green" style="color:white;">
+      <th rowspan="2">Nama Matakuliah</th>
+      <th rowspan="2">SKS</th>
+      <th colspan="2">Nilai</th>
+    </tr>
+    <tr bgcolor="#0984e3" style="color:white;">
+      <th>Huruf</th>
+      <th>Angka</th>
+    </tr>
+  </thead>
+  <tbody id="demo">
+  </tbody>  
+  <tfoot id="total" style="color: white">
+  </tfoot>
+</table>
+<!-- <p id="total"></p> -->
+
+<script>
+var dataKHS, i, j, x = "",total = 0,totalsks = 0,totalangka = 0,totalmk = 0,ipk=0;
+dataKHS = {
+  "title":"Kartu Hasil Studi",
+  "semester":"Campuran",
+  "item": [
+    {"nama":"Algoritma Pemrograman", "sks":["2"], "huruf":["B"], "angka":["6"]},
+    {"nama":"Akuntansi Pengantar", "sks":["2"], "huruf":["C"], "angka":["4"]},
+    {"nama":"Desain Basis Data", "sks":["2"], "huruf":["A"], "angka":["8"]},
+    {"nama":"Statistika", "sks":["2"], "huruf":["B"], "angka":["6"]},
+    {"nama":"Matematika Dasar", "sks":["2"], "huruf":["C"], "angka":["4"]},
+    {"nama":"Basis Data Terdistribusi", "sks":["3"], "huruf":["A"], "angka":["12"]},
+    {"nama":"Data Mining", "sks":["2"], "huruf":["A"], "angka":["8"]},
+    {"nama":"Big Data", "sks":["3"], "huruf":["A"], "angka":["12"]},
+    {"nama":"Pemrograman Web Lanjut", "sks":["3"], "huruf":["A"], "angka":["12"]}
+  ]
+}
+for (i in dataKHS.item) {
+  if (dataKHS.item[i].huruf == "C" ) {
+    tdata = "<td align='center' bgcolor='#ff7675'>" + dataKHS.item[i].huruf + "</td><td align='center' bgcolor='#ff7675'>" + dataKHS.item[i].angka + "</td>";
+  } else {
+    tdata = "<td align='center' bgcolor='#00b894'>" + dataKHS.item[i].huruf + "</td><td align='center' bgcolor='#00b894'>" + dataKHS.item[i].angka + "</td>";
+  }
+
+  x += "<tr><td style='text-align:left;''>" + dataKHS.item[i].nama + "</td><td align='center'>" + dataKHS.item[i].sks + "</td>" + tdata;
+  totalmk = parseInt(totalmk)+parseInt(1);
+  totalsks = parseInt(totalsks)+parseInt(dataKHS.item[i].sks);
+  totalangka = parseInt(totalangka)+parseInt(dataKHS.item[i].angka);
+  ipk = totalangka / totalsks;
+}
+  total = "<tr><td bgcolor='##ff7675'>TOTAL</td><td bgcolor='##ff7675'>"+totalsks+"</td><td bgcolor='##ff7675'> -/- </td><td bgcolor='##ff7675'>"+totalangka+"</td></tr><tr><td bgcolor='#0984e3'>IPK</td><td colspan='3' bgcolor='#0984e3'>"+ipk+"</td></tr>";
+document.getElementById("demo").innerHTML = x;
+document.getElementById("total").innerHTML = total;
+</script>
+
+</body>
+</html>
